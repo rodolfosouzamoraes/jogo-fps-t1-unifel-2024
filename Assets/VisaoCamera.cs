@@ -5,6 +5,7 @@ public class VisaoCamera : MonoBehaviour
     private GameObject alvo;
     public string tagAlvo;
     public RaycastHit hitAlvo;
+
     public GameObject AlvoVisto{
         get {return alvo;}
         private set{
@@ -38,6 +39,7 @@ public class VisaoCamera : MonoBehaviour
         }
         else{
             tagAlvo = "";
+            alvo = null;
         }
     }
 }
