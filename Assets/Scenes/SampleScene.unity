@@ -2069,58 +2069,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4414485866170328693, guid: b5a16d695a2e2c7449ae1c5ca43d9f40,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6527194855928724359, guid: b5a16d695a2e2c7449ae1c5ca43d9f40,
         type: 3}
       propertyPath: m_Name
       value: Pistola
       objectReference: {fileID: 0}
-    - target: {fileID: 7802260511038166788, guid: b5a16d695a2e2c7449ae1c5ca43d9f40,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6527194855928724359, guid: b5a16d695a2e2c7449ae1c5ca43d9f40,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8349987600740411558}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5a16d695a2e2c7449ae1c5ca43d9f40, type: 3}
---- !u!1 &8349987600740381829 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6527194855928724359, guid: b5a16d695a2e2c7449ae1c5ca43d9f40,
-    type: 3}
-  m_PrefabInstance: {fileID: 6479759963334856480}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8349987600740411557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3740581826096879688, guid: b5a16d695a2e2c7449ae1c5ca43d9f40,
     type: 3}
   m_PrefabInstance: {fileID: 6479759963334856480}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8349987600740411558
+--- !u!114 &8349987600740411558 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2415605014815791698, guid: b5a16d695a2e2c7449ae1c5ca43d9f40,
+    type: 3}
+  m_PrefabInstance: {fileID: 6479759963334856480}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8349987600740381829}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ed454107293bc044a0022066ee1aba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pente: 0
-  municaoPorPente: 10
-  municaoMaxima: 90
-  municaoTotal: 90
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

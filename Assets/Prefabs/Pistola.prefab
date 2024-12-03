@@ -248,7 +248,7 @@ Transform:
   m_GameObject: {fileID: 796818364063611943}
   serializedVersion: 2
   m_LocalRotation: {x: -2.646978e-23, y: 2.7100407e-30, z: -0.000000014814361, w: 1}
-  m_LocalPosition: {x: -0, y: -0.0259, z: 0.037}
+  m_LocalPosition: {x: 0, y: -0.0259, z: 0.037}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -941,7 +941,7 @@ Transform:
   m_GameObject: {fileID: 3145695583010019155}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2121,6 +2121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3740581826096879688}
   - component: {fileID: 5018588382445338619}
+  - component: {fileID: 2415605014815791698}
   m_Layer: 0
   m_Name: Pistola
   m_TagString: Untagged
@@ -2166,6 +2167,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2415605014815791698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6527194855928724359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed454107293bc044a0022066ee1aba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pente: 0
+  municaoPorPente: 10
+  municaoMaxima: 90
+  municaoTotal: 90
 --- !u!1 &6689495171392982484
 GameObject:
   m_ObjectHideFlags: 0
