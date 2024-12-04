@@ -33,11 +33,11 @@ public class VisaoCamera : MonoBehaviour
             //Desenhar a linha no modo editor do unity
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward)* hit.distance, Color.red);
             AlvoVisto = hit.transform.gameObject;
-            Debug.Log($"{alvo.name}");
             hitAlvo = hit;
         }
         else{
             tagAlvo = "";
+            alvo = null;
         }
     }
 }
