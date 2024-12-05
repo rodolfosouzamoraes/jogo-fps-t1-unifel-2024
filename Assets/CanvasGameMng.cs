@@ -26,6 +26,13 @@ public class CanvasGameMng : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        AtualizaMunicaoUI();
+    }
+
+    private void AtualizaMunicaoUI()
+    {
+        int pente = PlayerMng.disparoPlayer.ArmaAtiva.Pente;
+        int municao = PlayerMng.disparoPlayer.ArmaAtiva.MunicaoAtual;
+        txtMunicao.text = $"{(pente < 10 ? $"0{pente}" : pente)}/{(municao < 10 ? $"0{municao}" : municao)}";
     }
 }

@@ -9,36 +9,61 @@ public class DisparoPlayer : MonoBehaviour
     public GameObject impactoBalaInimigo;
     public GameObject impactoBala;
     public int idArmaAtiva = 1; // 1 - Pistola, 2 - Fuzil 
+    private ArmaControlador armaAtiva;
 
+    public ArmaControlador ArmaAtiva
+    {
+        get { return armaAtiva; }
+    }
     void Start(){
         if(idArmaAtiva == 1){
-            pistolaControlador.gameObject.SetActive(true);
-            fuzilControlador.gameObject.SetActive(false);
+            AtivarPistola();
         }
-        else{
-            pistolaControlador.gameObject.SetActive(false);
-            fuzilControlador.gameObject.SetActive(true);
+        else if(idArmaAtiva ==2){
+            AtivarFuzil();
         }
     }
     // Update is called once per frame
     void Update()
     {
-        //Verificar qual arma está ativa e vou armazenar numa variavel
-        ArmaControlador armaAtiva = idArmaAtiva == 1 ? pistolaControlador : fuzilControlador;
-
+        SelecionarArma();
+        DispararArma();
+        RecarregarArma();
+    }
+    private void SelecionarArma()
+    {
+        //Selecionar qual arma usar
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            idArmaAtiva = 1;
+            AtivarPistola();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            idArmaAtiva = 2;
+            AtivarFuzil();
+        }
+    }
+    private void DispararArma()
+    {
         //Verificar se a armaAtiva é inválida
-        if(armaAtiva == null) return;
+        if (armaAtiva == null) return;
 
         //Identificar se o botão de atirar foi clicado
-        if(Input.GetKey(KeyCode.Mouse0)){
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
             armaAtiva.Disparar();
         }
-        else if(Input.GetKeyUp(KeyCode.Mouse0)){
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
             armaAtiva.CancelarDisparo();
         }
-
+    }
+    private void RecarregarArma()
+    {
         //Tecla para recarregar a arma
-        if(Input.GetKeyDown(KeyCode.R)){
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             armaAtiva.RecarregarArma();
         }
     }
@@ -59,5 +84,18 @@ public class DisparoPlayer : MonoBehaviour
                 rotacaoDoImpacto);
             }
         }
+    }
+
+    private void AtivarPistola()
+    {
+        pistolaControlador.gameObject.SetActive(true);
+        fuzilControlador.gameObject.SetActive(false);
+        armaAtiva = pistolaControlador;
+    }
+    private void AtivarFuzil()
+    {
+        pistolaControlador.gameObject.SetActive(false);
+        fuzilControlador.gameObject.SetActive(true);
+        armaAtiva = fuzilControlador;
     }
 }

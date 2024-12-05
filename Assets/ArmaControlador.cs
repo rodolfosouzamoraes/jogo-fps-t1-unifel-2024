@@ -5,11 +5,19 @@ using UnityEngine;
 public class ArmaControlador : MonoBehaviour
 {
     private Animator animator;
-    public int pente;//Armazenar a quantidade de balas no pente da arma
+    private int pente;//Armazenar a quantidade de balas no pente da arma
     public int municaoPorPente;//Quantidade bala maxima que o pente suporta
     public int municaoMaxima;//Quantidade maxima de munição
-    public int municaoAtual;//Quantidade de munição atual da arma
+    private int municaoAtual;//Quantidade de munição atual da arma
 
+    public int Pente
+    {
+        get { return pente; }
+    }
+    public int MunicaoAtual
+    {
+        get { return municaoAtual;}
+    }
     // Start is called before the first frame update
     void Start()
     {
