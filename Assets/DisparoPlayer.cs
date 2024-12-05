@@ -99,8 +99,12 @@ public class DisparoPlayer : MonoBehaviour
         armaAtiva = fuzilControlador;
     }
 
-    public void IncrememtarMunicao(int municao)
+    public void IncrememtarMunicaoPistola(int municao)
     {
-        armaAtiva.IncrementarMunicao(municao);
+        pistolaControlador.IncrementarMunicao(municao);
+    }
+    public void IncrememtarMunicaoFuzil(int municao)
+    {
+        fuzilControlador.IncrementarMunicao(municao);
     }
 }

@@ -47,10 +47,10 @@ public class ItemMunicao : MonoBehaviour
             switch (idArma)
             {
                 case 1:
-                    PlayerMng.disparoPlayer.IncrememtarMunicao(municaoParaPistola);
+                    PlayerMng.disparoPlayer.IncrememtarMunicaoPistola(municaoParaPistola);
                     break;
                 case 2:
-                    PlayerMng.disparoPlayer.IncrememtarMunicao(municaoParaFuzil);
+                    PlayerMng.disparoPlayer.IncrememtarMunicaoFuzil(municaoParaFuzil);
                     break;
             }
             Destroy(gameObject);

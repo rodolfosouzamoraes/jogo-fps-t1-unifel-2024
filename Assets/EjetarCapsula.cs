@@ -10,8 +10,14 @@ public class EjetarCapsula : MonoBehaviour
     {
         //Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(1,0,-1)) * 100, Color.red);
         gameObject.transform.SetParent(null);
-        myRigidbody.AddForce(transform.TransformDirection(new Vector3(1, 0, -1)));
-        myRigidbody.velocity = transform.TransformDirection(new Vector3(1, 0, -1) * 3);        
+        myRigidbody.AddForce(transform.TransformDirection(new Vector3(100, 0, 0)));
+        myRigidbody.AddTorque(transform.right * 0.5f);
+
+        //myRigidbody.velocity = transform.TransformDirection(new Vector3(1, 0, -1)*3);        
         Destroy(gameObject,3f);
+    }
+
+    private void FixedUpdate()
+    {
     }
 }
