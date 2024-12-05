@@ -98,4 +98,9 @@ public class DisparoPlayer : MonoBehaviour
         fuzilControlador.gameObject.SetActive(true);
         armaAtiva = fuzilControlador;
     }
+
+    public void IncrememtarMunicao(int municao)
+    {
+        armaAtiva.IncrementarMunicao(municao);
+    }
 }

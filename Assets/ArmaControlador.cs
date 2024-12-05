@@ -64,6 +64,14 @@ public class ArmaControlador : MonoBehaviour
         }
     }
 
+    public void IncrementarMunicao(int municao)
+    {
+        municaoAtual += municao;
+        if (municaoAtual > municaoMaxima) { 
+            municaoAtual = municaoMaxima;
+        }
+    }
+
     private void PlayDisparo(){
         animator.SetBool("Fire",true);
         animator.SetBool("Idle",true);
