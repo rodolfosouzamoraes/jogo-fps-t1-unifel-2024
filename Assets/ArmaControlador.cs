@@ -9,6 +9,8 @@ public class ArmaControlador : MonoBehaviour
     public int municaoPorPente;//Quantidade bala maxima que o pente suporta
     public int municaoMaxima;//Quantidade maxima de munição
     private int municaoAtual;//Quantidade de munição atual da arma
+    public GameObject capsula;
+    public Transform posicaoCapsula;
 
     public int Pente
     {
@@ -62,6 +64,10 @@ public class ArmaControlador : MonoBehaviour
             PlaySemMunicao();
             pente = 0;
         }
+        GameObject cp = Instantiate(capsula);
+        cp.transform.position = posicaoCapsula.position;
+        cp.transform.rotation = posicaoCapsula.rotation;
+        cp.GetComponent<EjetarCapsula>().Ejetar();
     }
 
     public void IncrementarMunicao(int municao)
