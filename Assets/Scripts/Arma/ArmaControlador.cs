@@ -1,14 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ArmaControlador : MonoBehaviour
 {
     private Animator animator;
-    public int pente;//Armazenar a quantidade de balas no pente da arma
+    private int pente;//Armazenar a quantidade de balas no pente da arma
     public int municaoPorPente;//Quantidade bala maxima que o pente suporta
     public int municaoMaxima;//Quantidade maxima de munição
-    public int municaoAtual;//Quantidade de munição atual da arma
+    private int municaoAtual;//Quantidade de munição atual da arma
+    public float danoInimigo;//O valor do dano a vida do inimigo
+    public GameObject capsula;
+    public Transform posicaoCapsula;
+    
+
+    public int Pente{
+        get{return pente;}
+    }
+    public int MunicaoAtual{
+        get{return municaoAtual;}
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +65,21 @@ public class ArmaControlador : MonoBehaviour
         if(pente <=0){
             PlaySemMunicao();
             pente = 0;
+        }
+        //Instanciar a capsula
+        GameObject cp = Instantiate(capsula);
+        //Posicionar a capsula na posição que vai ser ejetada
+        cp.transform.position = posicaoCapsula.position;
+        //Posicionar a rotação na mesma rotação de saida da capsula
+        cp.transform.rotation = posicaoCapsula.rotation;
+        //Chamar a função para ejetar a capsula
+        cp.GetComponent<EjetarCapsula>().Ejetar();
+    }
+
+    public void IncrementarMunicao(int municao){
+        municaoAtual += municao;
+        if(municaoAtual > municaoMaxima){
+            municaoAtual = municaoMaxima;
         }
     }
 
