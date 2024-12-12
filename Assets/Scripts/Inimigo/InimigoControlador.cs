@@ -18,6 +18,7 @@ public class InimigoControlador : MonoBehaviour
     private bool estaVendoPlayer = false;
     private NavMeshAgent agent;
     private SuporteAnimacaoInimigo suporteAnimacao;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -143,4 +144,6 @@ public class InimigoControlador : MonoBehaviour
             Debug.Log("Dano ao player");
         }
     }
+
+    
 }
