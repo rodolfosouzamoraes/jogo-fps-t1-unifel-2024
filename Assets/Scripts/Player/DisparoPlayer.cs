@@ -26,6 +26,7 @@ public class DisparoPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(PlayerMng.Instance.estaMorto == true) return;
         SelecionarArma();
         DispararArma();
         RecarregarArma();
@@ -101,5 +102,10 @@ public class DisparoPlayer : MonoBehaviour
     }
     public void IncrementarMunicaoFuzil(int municao){
         fuzilControlador.IncrementarMunicao(municao);
+    }
+
+    public void DesabilitarArmas(){
+        pistolaControlador.gameObject.SetActive(false);
+        fuzilControlador.gameObject.SetActive(false);
     }
 }

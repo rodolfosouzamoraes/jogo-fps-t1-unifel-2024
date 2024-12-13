@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CanvasGameMng : MonoBehaviour
 {
@@ -17,6 +18,13 @@ public class CanvasGameMng : MonoBehaviour
 
     public TextMeshProUGUI txtVida;
     public TextMeshProUGUI txtMunicao;
+    public int vidaJogador;
+    public GameObject pnlGameOver;
+    public GameObject pnlStatusPlayer;
+
+    void Start(){
+        txtVida.text = $"+{vidaJogador}";
+    }
 
     // Update is called once per frame
     void Update()
@@ -31,5 +39,21 @@ public class CanvasGameMng : MonoBehaviour
         string valorPente = pente < 10 ? $"0{pente}" : $"{pente}";
         string valorMunicao = municao < 10 ? $"0{municao}" : $"{municao}";
         txtMunicao.text = $"{valorPente}/{valorMunicao}";
+    }
+
+    public void DecrementarVidaJogador(int dano){
+        vidaJogador -= dano;
+        if(vidaJogador <= 0){
+            vidaJogador = 0;
+            PlayerMng.Instance.MatarJogador();
+            pnlStatusPlayer.SetActive(false);
+            pnlGameOver.SetActive(true);
+            Invoke("ReiniciarJogo",4.5f);
+        }
+        txtVida.text = $"+{vidaJogador}";
+    }
+
+    private void ReiniciarJogo(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

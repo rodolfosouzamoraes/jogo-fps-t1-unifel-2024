@@ -6,11 +6,16 @@ public class SuporteAnimacaoInimigo : MonoBehaviour
 {
     private Animator animator;
     private InimigoControlador controlador;
+    private InimigoDistancia inimigoDistancia;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         controlador = GetComponentInParent<InimigoControlador>();
+        try{
+            inimigoDistancia = GetComponentInParent<InimigoDistancia>();
+        }
+        catch{}
 
         int idParado = new System.Random().Next(1,6);
         animator.SetFloat("id_parado",idParado);
@@ -40,5 +45,9 @@ public class SuporteAnimacaoInimigo : MonoBehaviour
 
     public void DanoAoPlayer(){
         controlador.DanoAoPlayer();
+    }
+
+    public void AtaqueDistancia(){
+        inimigoDistancia.AtaqueDistancia();
     }
 }

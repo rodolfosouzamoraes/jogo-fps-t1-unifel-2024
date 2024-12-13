@@ -13,6 +13,7 @@ public class InimigoControlador : MonoBehaviour
     public float distanciaPerseguicao;
     public bool estaPerseguindo = false;
     public LayerMask layerMask;
+    public int danoAoPlayer = 10;
     private CapsuleCollider capsuleCollider;
     private bool estaMorto = false;
     private bool estaVendoPlayer = false;
@@ -91,6 +92,7 @@ public class InimigoControlador : MonoBehaviour
         estaPerseguindo = true;
         if(vida<=0){
             estaMorto = true;
+            InstanciarInimigos.Instance.DecrementarQtdInimigosNaFase();
             agent.destination = transform.position;
             suporteAnimacao.PlayDeath();//Ativar a animação de morte
             Destroy(capsuleCollider);
@@ -140,7 +142,7 @@ public class InimigoControlador : MonoBehaviour
 
     public void DanoAoPlayer(){
         if(estaVendoPlayer == true){
-            Debug.Log("Dano ao player");
+            CanvasGameMng.Instance.DecrementarVidaJogador(danoAoPlayer);
         }
     }
 }

@@ -1807,7 +1807,7 @@ GameObject:
   - component: {fileID: 2090699724932882061}
   - component: {fileID: 3929994286100658586}
   m_Layer: 0
-  m_Name: InimigoA
+  m_Name: InimigoA1
   m_TagString: Inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

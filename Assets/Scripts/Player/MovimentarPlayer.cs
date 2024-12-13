@@ -15,7 +15,6 @@ public class MovimentarPlayer : MonoBehaviour
     public float limiteCameraX = 45f;
     private Vector3 direcaoMovimentacao = Vector3.zero;
     private float rotacaoX = 0;
-    public bool habilitaMovimentacao = true;
     CharacterController characterController;
     // Start is called before the first frame update
     void Start()
@@ -30,7 +29,7 @@ public class MovimentarPlayer : MonoBehaviour
     void Update()
     {
         //Virificar se o player pode se movimentar
-        if(habilitaMovimentacao == false) return;
+        if(PlayerMng.Instance.estaMorto == true) return;
         //Pegar a direção do corpo do player em relação a frente e uma das extremidades
         Vector3 frente = transform.TransformDirection(Vector3.forward);
         Vector3 direita = transform.TransformDirection(Vector3.right);
