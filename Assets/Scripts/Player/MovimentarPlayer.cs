@@ -15,7 +15,7 @@ public class MovimentarPlayer : MonoBehaviour
     public float limiteCameraX = 45f;
     private Vector3 direcaoMovimentacao = Vector3.zero;
     private float rotacaoX = 0;
-    CharacterController characterController;
+    public CharacterController characterController;
     // Start is called before the first frame update
     void Start()
     {

@@ -18,36 +18,36 @@ public class SuporteAnimacaoInimigo : MonoBehaviour
         catch{}
 
         int idParado = new System.Random().Next(1,6);
-        animator.SetFloat("id_parado",idParado);
+        animator?.SetFloat("id_parado",idParado);
         int idMorte = new System.Random().Next(1,3);
-        animator.SetFloat("id_morte", idMorte);
+        animator?.SetFloat("id_morte", idMorte);
     }
 
     
     public void PlayIdle(){
-        animator.SetBool("run", false);
-        animator.SetBool("idle", true);
-        animator.SetBool("attack", false);
+        animator?.SetBool("run", false);
+        animator?.SetBool("idle", true);
+        animator?.SetBool("attack", false);
     }
     public void PlayRun(){
-        animator.SetBool("run", true);
-        animator.SetBool("idle", false);
-        animator.SetBool("attack", false);
+        animator?.SetBool("run", true);
+        animator?.SetBool("idle", false);
+        animator?.SetBool("attack", false);
     }
     public void PlayAttack(){
-        animator.SetBool("run", false);
-        animator.SetBool("idle", false);
-        animator.SetBool("attack", true);
+        animator?.SetBool("run", false);
+        animator?.SetBool("idle", false);
+        animator?.SetBool("attack", true);
     }
     public void PlayDeath(){
-        animator.SetTrigger("death");
+        animator?.SetTrigger("death");
     }
 
     public void DanoAoPlayer(){
-        controlador.DanoAoPlayer();
+        controlador?.DanoAoPlayer();
     }
 
     public void AtaqueDistancia(){
-        inimigoDistancia.AtaqueDistancia();
+        inimigoDistancia?.AtaqueDistancia();
     }
 }
