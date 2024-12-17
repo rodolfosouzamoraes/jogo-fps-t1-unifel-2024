@@ -2134,6 +2134,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   danoAoPlayer: 15
+  canvasBarraDeVida: {fileID: 3568175254674662847}
 --- !u!136 &5615286978847315231
 CapsuleCollider:
   m_ObjectHideFlags: 0

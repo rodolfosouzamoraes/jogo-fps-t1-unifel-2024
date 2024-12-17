@@ -12,10 +12,12 @@ public class VisaoCamera : MonoBehaviour
             tagAlvo = alvo.tag;
         }
     }
+    private GameObject ultimoInimigoVisto;
     // Start is called before the first frame update
     void Start()
     {
         alvo = null;
+        ultimoInimigoVisto = null;
     }
 
     // Update is called once per frame
@@ -34,6 +36,23 @@ public class VisaoCamera : MonoBehaviour
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward)* hit.distance, Color.red);
             AlvoVisto = hit.transform.gameObject;
             hitAlvo = hit;
+            if(tagAlvo == "Inimigo")
+            {
+                if(ultimoInimigoVisto != hit.transform.gameObject && ultimoInimigoVisto!=null)
+                {
+                    ultimoInimigoVisto.GetComponent<InimigoControlador>().OcultarBarraDeVida();
+                }
+                AlvoVisto.GetComponent<InimigoControlador>().ExibirBarraDeVida();
+                ultimoInimigoVisto = hit.transform.gameObject;
+            }
+            else
+            {
+                if(ultimoInimigoVisto != null)
+                {
+                    ultimoInimigoVisto.GetComponent<InimigoControlador>().OcultarBarraDeVida();
+                    ultimoInimigoVisto = null;
+                }
+            }
         }
         else{
             tagAlvo = "";

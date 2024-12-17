@@ -19,6 +19,7 @@ public class InimigoControlador : MonoBehaviour
     private bool estaVendoPlayer = false;
     private NavMeshAgent agent;
     private SuporteAnimacaoInimigo suporteAnimacao;
+    public GameObject canvasBarraDeVida;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class InimigoControlador : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         agent.speed = velocidade;
         suporteAnimacao = GetComponentInChildren<SuporteAnimacaoInimigo>();
+        OcultarBarraDeVida();
     }
 
     // Update is called once per frame
@@ -144,5 +146,14 @@ public class InimigoControlador : MonoBehaviour
         if(estaVendoPlayer == true){
             CanvasGameMng.Instance.DecrementarVidaJogador(danoAoPlayer);
         }
+    }
+
+    public void ExibirBarraDeVida()
+    {
+        canvasBarraDeVida.SetActive(true);
+    }
+    public void OcultarBarraDeVida()
+    {
+        canvasBarraDeVida.SetActive(false);
     }
 }

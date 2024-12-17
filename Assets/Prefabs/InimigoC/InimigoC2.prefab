@@ -511,6 +511,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   danoAoPlayer: 14
+  canvasBarraDeVida: {fileID: 5361352958425602349}
   projetilZumbi: {fileID: 3152315625628848255, guid: 83921ea5b35741c4fa523fe634585c00,
     type: 3}
 --- !u!136 &1558043063170609090
