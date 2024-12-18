@@ -28,6 +28,7 @@ public class MovimentarPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(CanvasGameMng.Instance.fimDeJogo == true) return;
         //Virificar se o player pode se movimentar
         if(PlayerMng.Instance.estaMorto == true) return;
         //Pegar a direção do corpo do player em relação a frente e uma das extremidades

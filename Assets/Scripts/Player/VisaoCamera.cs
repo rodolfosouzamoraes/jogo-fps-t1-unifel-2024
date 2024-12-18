@@ -12,6 +12,8 @@ public class VisaoCamera : MonoBehaviour
             tagAlvo = alvo.tag;
         }
     }
+
+    private GameObject ultimoInimigoVisto;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class VisaoCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(CanvasGameMng.Instance.fimDeJogo == true) return;
         RayCastCamera();
     }
 
@@ -34,6 +37,23 @@ public class VisaoCamera : MonoBehaviour
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward)* hit.distance, Color.red);
             AlvoVisto = hit.transform.gameObject;
             hitAlvo = hit;
+            //verificar se a tag é do inimigo
+            if(tagAlvo == "Inimigo"){
+                //Verificar se o ultimo ininimgo é o inimigo atual visto
+                if(ultimoInimigoVisto != hit.transform.gameObject && 
+                    ultimoInimigoVisto != null){
+                    ultimoInimigoVisto.GetComponent<InimigoControlador>().OcultarBarraDeVida();
+                }
+                AlvoVisto.GetComponent<InimigoControlador>().ExibirBarraDeVida();
+                ultimoInimigoVisto = hit.transform.gameObject;
+            }
+            else{
+                //Verificar se há algum inimigo visto anteriormente
+                if(ultimoInimigoVisto != null){
+                    ultimoInimigoVisto.GetComponent<InimigoControlador>().OcultarBarraDeVida();
+                    ultimoInimigoVisto = null;
+                }
+            }
         }
         else{
             tagAlvo = "";

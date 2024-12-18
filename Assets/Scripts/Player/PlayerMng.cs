@@ -24,26 +24,10 @@ public class PlayerMng : MonoBehaviour
 
     public bool estaMorto;
 
-    void Start(){
-        InstanciarPlayerAleatoriamente();
-    }
-
     public void MatarJogador(){
         estaMorto = true;
+        CanvasGameMng.Instance.fimDeJogo = true;
         Destroy(GetComponent<CapsuleCollider>());
         disparoPlayer.DesabilitarArmas();
-    }
-
-    private void InstanciarPlayerAleatoriamente(){
-        float posicaoZ = Random.Range(-95,95);
-        float posicaoX = Random.Range(-95,95);
-        NavMeshHit hit;
-        NavMesh.SamplePosition(
-            new Vector3(posicaoX, 0, posicaoZ),
-            out hit,
-            Mathf.Infinity,
-            1
-        );
-        transform.position = hit.position;
     }
 }

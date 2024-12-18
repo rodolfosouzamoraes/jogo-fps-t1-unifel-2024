@@ -21,14 +21,39 @@ public class CanvasGameMng : MonoBehaviour
     public int vidaJogador;
     public GameObject pnlGameOver;
     public GameObject pnlStatusPlayer;
+    
+    public GameObject pnlTopo;
+    public GameObject[] iconesChaves;
+    public TextMeshProUGUI txtTempo;
+    public TextMeshProUGUI txtObjetivo;
+    private float totalTempo;
+    private int tempoFinal;
+
+    public GameObject pnlFimDeJogo;
+    public TextMeshProUGUI txtTempoFinal;
+
+    private int maxChave;
+    private int totalChavesColetadas;
+    public bool fimDeJogo;
+
+    public TextMeshProUGUI txtTotalZumbisMortos;
+    private int totalZumbisMortos;
 
     void Start(){
         txtVida.text = $"+{vidaJogador}";
+        maxChave = FindObjectsOfType<ItemChave>().Length;
+        totalChavesColetadas = 0;
+        fimDeJogo = false;
+        txtTempo.text = "0";
+        txtObjetivo.text = "Colete as 7 chaves!";
+        totalZumbisMortos = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(fimDeJogo == true) return;
+        ContarTempo();
         AtualizarMunicaoUI();
     }
 
@@ -42,6 +67,8 @@ public class CanvasGameMng : MonoBehaviour
     }
 
     public void DecrementarVidaJogador(int dano){
+        if(fimDeJogo == true) return;
+
         vidaJogador -= dano;
         if(vidaJogador <= 0){
             vidaJogador = 0;
@@ -53,7 +80,53 @@ public class CanvasGameMng : MonoBehaviour
         txtVida.text = $"+{vidaJogador}";
     }
 
-    private void ReiniciarJogo(){
+    public void IncrementarVidaJogador(){
+        vidaJogador +=25;
+        if(vidaJogador >100){
+            vidaJogador = 100;
+        }
+        txtVida.text = $"+{vidaJogador}";
+    }
+
+    public void ReiniciarJogo(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void IncrementarChave(){
+        totalChavesColetadas++;
+        iconesChaves[totalChavesColetadas].SetActive(true);
+        if(ColetouTodasAsChaves() == true){
+            txtObjetivo.text = "Encontre o portão final!";
+        }
+    }
+
+    public bool ColetouTodasAsChaves(){
+        return totalChavesColetadas == maxChave ? true : false;
+    }
+
+    private void ContarTempo(){
+        totalTempo += Time.deltaTime;
+        txtTempo.text = $"{(int)totalTempo}";
+    }
+
+    public void ExibirTelaFinal(){
+        fimDeJogo = true;
+        tempoFinal = (int) totalTempo;
+        txtTempoFinal.text = $"{tempoFinal}s";
+        txtTotalZumbisMortos.text = $"{totalZumbisMortos}";
+        pnlFimDeJogo.SetActive(true);
+        pnlStatusPlayer.SetActive(false);
+        pnlTopo.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        PlayerMng.disparoPlayer.DesabilitarArmas();
+    }
+
+    public void VoltarParaMenu(){
+        SceneManager.LoadScene(0);
+    }
+
+    public void IncrementarMortesZumbi(){
+        totalZumbisMortos++;
     }
 }

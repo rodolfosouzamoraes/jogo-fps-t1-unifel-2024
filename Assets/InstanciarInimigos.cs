@@ -60,7 +60,10 @@ public class InstanciarInimigos : MonoBehaviour
         //Instanciar o inimigo na posição
         int inimigoSorteado = new System.Random().Next(0, inimigos.Length);
         var novoInimigo = Instantiate(inimigos[inimigoSorteado]);
+        var agent = novoInimigo.GetComponent<NavMeshAgent>();
+        agent.enabled = false;
         novoInimigo.transform.position = hit.position;
+        agent.enabled = true;
         var rotacaoSorteada = Quaternion.Euler(0,new System.Random().Next(0,361),0);
         novoInimigo.transform.rotation = rotacaoSorteada;
 

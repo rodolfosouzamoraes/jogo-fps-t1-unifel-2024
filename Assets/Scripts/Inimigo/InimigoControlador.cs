@@ -19,6 +19,7 @@ public class InimigoControlador : MonoBehaviour
     private bool estaVendoPlayer = false;
     private NavMeshAgent agent;
     private SuporteAnimacaoInimigo suporteAnimacao;
+    public GameObject canvasBarraDeVida;
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +32,13 @@ public class InimigoControlador : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         agent.speed = velocidade;
         suporteAnimacao = GetComponentInChildren<SuporteAnimacaoInimigo>();
+        OcultarBarraDeVida();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(CanvasGameMng.Instance.fimDeJogo == true) return;
         if(estaMorto == true) return;
         VisaoInimigo();
 
@@ -92,6 +95,7 @@ public class InimigoControlador : MonoBehaviour
         estaPerseguindo = true;
         if(vida<=0){
             estaMorto = true;
+            CanvasGameMng.Instance.IncrementarMortesZumbi();
             InstanciarInimigos.Instance.DecrementarQtdInimigosNaFase();
             agent.destination = transform.position;
             suporteAnimacao.PlayDeath();//Ativar a animação de morte
@@ -144,5 +148,13 @@ public class InimigoControlador : MonoBehaviour
         if(estaVendoPlayer == true){
             CanvasGameMng.Instance.DecrementarVidaJogador(danoAoPlayer);
         }
+    }
+
+    public void ExibirBarraDeVida(){
+        canvasBarraDeVida.SetActive(true);
+    }
+
+    public void OcultarBarraDeVida(){
+        canvasBarraDeVida.SetActive(false);
     }
 }
