@@ -6,6 +6,7 @@ public class InimigoDistancia : InimigoControlador
 {
     public GameObject projetilZumbi;
 
+
     public void AtaqueDistancia(){
         var projetil = Instantiate(projetilZumbi);
         projetil.GetComponent<ProjetilInimigo>().AtualizaDanoJogador(danoAoPlayer);
