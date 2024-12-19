@@ -13,6 +13,7 @@ public class ArmaControlador : MonoBehaviour
     public float danoInimigo;//O valor do dano a vida do inimigo
     public GameObject capsula;
     public Transform posicaoCapsula;
+    public GameObject muzzleFlash;
     
 
     public int Pente{
@@ -66,6 +67,7 @@ public class ArmaControlador : MonoBehaviour
             PlaySemMunicao();
             pente = 0;
         }
+        muzzleFlash.SetActive(true);
         //Instanciar a capsula
         GameObject cp = Instantiate(capsula);
         //Posicionar a capsula na posição que vai ser ejetada
