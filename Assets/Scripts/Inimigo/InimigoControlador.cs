@@ -20,6 +20,7 @@ public class InimigoControlador : MonoBehaviour
     private NavMeshAgent agent;
     private SuporteAnimacaoInimigo suporteAnimacao;
     public GameObject canvasBarraDeVida;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,7 @@ public class InimigoControlador : MonoBehaviour
         agent.speed = velocidade;
         suporteAnimacao = GetComponentInChildren<SuporteAnimacaoInimigo>();
         OcultarBarraDeVida();
+        audioSource.volume = AudioMng.Instance.volumeVFX;
     }
 
     // Update is called once per frame
@@ -156,5 +158,10 @@ public class InimigoControlador : MonoBehaviour
 
     public void OcultarBarraDeVida(){
         canvasBarraDeVida.SetActive(false);
+    }
+
+    public void ConfigurarAudio(AudioClip audioClip){
+        audioSource.clip = audioClip;
+        audioSource.Play();
     }
 }

@@ -47,11 +47,17 @@ public class CanvasGameMng : MonoBehaviour
         txtTempo.text = "0";
         txtObjetivo.text = "Colete as 7 chaves!";
         totalZumbisMortos = 0;
+        AudioMng.Instance.PlayAudioGame();
+        CanvasLoading.Instance.OcultarTelaDeCarregamento();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            VoltarParaMenu();
+        }
+
         if(fimDeJogo == true) return;
         ContarTempo();
         AtualizarMunicaoUI();
@@ -89,6 +95,7 @@ public class CanvasGameMng : MonoBehaviour
     }
 
     public void ReiniciarJogo(){
+        CanvasLoading.Instance.ExibirTelaDeCarregamento();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -114,19 +121,26 @@ public class CanvasGameMng : MonoBehaviour
         tempoFinal = (int) totalTempo;
         txtTempoFinal.text = $"{tempoFinal}s";
         txtTotalZumbisMortos.text = $"{totalZumbisMortos}";
+        DBMng.SalvarDados(totalZumbisMortos,tempoFinal);
         pnlFimDeJogo.SetActive(true);
         pnlStatusPlayer.SetActive(false);
         pnlTopo.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        DesbloquearMouse();
         PlayerMng.disparoPlayer.DesabilitarArmas();
     }
 
     public void VoltarParaMenu(){
+        DesbloquearMouse();
+        CanvasLoading.Instance.ExibirTelaDeCarregamento();
         SceneManager.LoadScene(0);
     }
 
     public void IncrementarMortesZumbi(){
         totalZumbisMortos++;
+    }
+
+    public void DesbloquearMouse(){
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

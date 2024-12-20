@@ -90,12 +90,14 @@ public class DisparoPlayer : MonoBehaviour
         pistolaControlador.gameObject.SetActive(true);
         fuzilControlador.gameObject.SetActive(false);
         armaAtiva = pistolaControlador;
+        armaAtiva.AtivarAudioSelecaoDeArma();
     }
 
     private void AtivarFuzil(){
         pistolaControlador.gameObject.SetActive(false);
         fuzilControlador.gameObject.SetActive(true);
         armaAtiva = fuzilControlador;
+        armaAtiva.AtivarAudioSelecaoDeArma();
     }
 
     public void IncrementarMunicaoPistola(int municao){

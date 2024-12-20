@@ -13,7 +13,9 @@ public class ArmaControlador : MonoBehaviour
     public float danoInimigo;//O valor do dano a vida do inimigo
     public GameObject capsula;
     public Transform posicaoCapsula;
-    
+    public GameObject muzzleFlash;
+    public AudioClip[] audios; //0 - Tiro, 1 - Recarregamento, 2 - Arma Sem Bala, 3 - Usar arma
+    public AudioSource audioSource;
 
     public int Pente{
         get{return pente;}
@@ -28,6 +30,7 @@ public class ArmaControlador : MonoBehaviour
         animator = GetComponent<Animator>();
         pente = municaoPorPente;
         municaoAtual = municaoMaxima;
+        audioSource.volume = AudioMng.Instance.volumeVFX;
     }
 
     //Permitir ativar a animação de tiro
@@ -44,6 +47,7 @@ public class ArmaControlador : MonoBehaviour
     public void RecarregarArma(){
         //Se arma tem munição e verificar quantidade de muniçao no pente
         if(municaoAtual > 0 && pente < municaoPorPente){
+            audioSource.PlayOneShot(audios[1]);
             //Calcular uma diferença entre a munição que eu posso ter no pente com o
             //que eu já tenho no pente
             int diferenca = municaoPorPente - pente;
@@ -63,9 +67,13 @@ public class ArmaControlador : MonoBehaviour
         PlayerMng.disparoPlayer.DanoAoObjeto();//Dar dano ao objeto
         pente--;
         if(pente <=0){
+            audioSource.PlayOneShot(audios[2]);
             PlaySemMunicao();
             pente = 0;
         }
+        audioSource.PlayOneShot(audios[0]);
+
+        muzzleFlash.SetActive(true);
         //Instanciar a capsula
         GameObject cp = Instantiate(capsula);
         //Posicionar a capsula na posição que vai ser ejetada
@@ -102,5 +110,10 @@ public class ArmaControlador : MonoBehaviour
         animator.SetBool("Reload",true);
         animator.SetBool("Idle",true);
         animator.SetBool("Empty",false);
+    }
+
+    public void AtivarAudioSelecaoDeArma(){
+        audioSource.volume = AudioMng.Instance.volumeVFX;
+        audioSource.PlayOneShot(audios[3]);
     }
 }

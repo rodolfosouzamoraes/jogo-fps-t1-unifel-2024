@@ -16,6 +16,8 @@ public class MovimentarPlayer : MonoBehaviour
     private Vector3 direcaoMovimentacao = Vector3.zero;
     private float rotacaoX = 0;
     CharacterController characterController;
+    public AudioSource audioSource;
+    public AudioClip[] audiosMovimentacao;// 0 - Andar, 1 - Correr
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class MovimentarPlayer : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        audioSource.volume = AudioMng.Instance.volumeVFX;
     }
 
     // Update is called once per frame
@@ -43,6 +46,30 @@ public class MovimentarPlayer : MonoBehaviour
         float direcaoEmY = direcaoMovimentacao.y;
         //Definir a direcao do player
         direcaoMovimentacao = (frente * velocidadeX) + (direita * velocidadeY);
+
+        //Verificar se está se movimentando para poder fazer o audio de movimentacao
+        if(direcaoMovimentacao != Vector3.zero){
+            if(estaCorrendo == true){
+                if(audioSource.clip != audiosMovimentacao[1]){
+                    audioSource.Stop();
+                    audioSource.clip = audiosMovimentacao[1];
+                    audioSource.Play();
+                }
+            }
+            else{
+                if(audioSource.clip != audiosMovimentacao[0]){
+                    audioSource.Stop();
+                    audioSource.clip = audiosMovimentacao[0];
+                    audioSource.Play();
+                }
+            }
+            if(audioSource.isPlaying == false){
+                audioSource.Play();
+            }            
+        }
+        else{
+            audioSource.Stop();
+        }
 
         //Verificar se o jogador está no chão para efetuar o pulo
         if(Input.GetButton("Jump") && characterController.isGrounded == true){

@@ -23,6 +23,13 @@ public class PlayerMng : MonoBehaviour
     }
 
     public bool estaMorto;
+    public GameObject lanterna;
+
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.F)){
+            lanterna.SetActive(!lanterna.activeSelf);
+        }
+    }
 
     public void MatarJogador(){
         estaMorto = true;
